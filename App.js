@@ -2,36 +2,35 @@ import React, { Component } from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
 
-export default class App extends Component {
-  state = {
-    result: null,
-  };
-
-  render() {
+export class Date {
+  render () {
     return (
-      <View style={styles.container}>
-        <Button
-          style={styles.paragraph}
-          title="Open Something"
-          onPress={this._handlePressButtonAsync}
-        />
-        <Text>{this.state.result && JSON.stringify(this.state.result)}</Text>
+      <View style = {styles.forall}>
       </View>
     );
   }
+}
 
-  _handlePressButtonAsync = async () => {
-    let result = await WebBrowser.openBrowserAsync('https://classroom.google.com/c/MjI2NzUwMTYwNzJa/a/MjgzMjM1OTQ3NjRa/details');
-    this.setState({ result });
-  };
+export default class App extends Component {
+  render () {
+    return (
+      <View style = {styles.backg}>
+
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backg: {
+    backgroundColor: 'grey',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
+  forall : {
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: '#696969',
+  }
 });
