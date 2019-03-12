@@ -2,35 +2,56 @@ import React, { Component } from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
 
-export class Date {
+const INTERVAL = 100;
+
+export default class Timer extends Component {
+  constructor (props) {
+    super (props);
+    this.state = {value: 0,}
+  }
+
+  increment () {
+    this.setState({value: this.state.value + 1});
+  }
+
+  componentDidMount() {
+      this.timerID = setInterval(() => this.increment(), 1000/INTERVAL);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
   render () {
+    const value = this.state.value
     return (
       <View style = {styles.forall}>
-      </View>
-    );
-  }
-}
-
-export default class App extends Component {
-  render () {
-    return (
-      <View style = {styles.backg}>
-
+      <View style  = {styles.box}>
+        <Text style = {styles.foreach}>Timer:</Text>
+        <Text style = {styles.foreach}>{Math.floor(value/INTERVAL/60/60%60)} : </Text>
+        <Text style = {styles.foreach}>{Math.floor(value/INTERVAL/60%60)} : </Text>
+        <Text style = {styles.foreach}>{Math.floor(value/INTERVAL%60)} . </Text>
+        <Text style = {styles.foreach}>{value % INTERVAL}</Text>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  backg: {
-    backgroundColor: 'grey',
+  forall: {
+    backgroundColor: '#F08080',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  forall : {
-    borderWidth: 2,
-    borderRadius: 5,
-    borderColor: '#696969',
-  }
+  box: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 30,
+  },
+  foreach: {
+      flex:1,
+      fontSize: 20,
+    },
 });
