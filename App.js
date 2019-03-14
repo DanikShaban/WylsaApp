@@ -5,6 +5,17 @@ import { Constants, WebBrowser } from 'expo';
 const INTERVAL = 1000;
 
 
+export default class App extends Component {
+  render () {
+    return (
+      <View style = {styles.forall}>
+          <Timer starttime = {new Date().getTime()}/>
+      </View>
+    );
+  }
+}
+
+
 class Timer extends Component {
   constructor (props) {
     super (props);
@@ -39,15 +50,6 @@ class Timer extends Component {
   }
 }
 
-export default class App extends Component {
-  render () {
-    return (
-      <View style = {styles.forall}>
-          <Timer starttime = {new Date().getTime()}/>
-      </View>
-    );
-  }
-}
 
 
 const styles = StyleSheet.create({
