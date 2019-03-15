@@ -19,7 +19,9 @@ export default class App extends Component {
 class Timer extends Component {
   constructor (props) {
     super (props);
-    this.state = {timenow: new Date().getTime(),}
+    this.state = {timenow: new Date().getTime()}
+    this.componentWillUnmount = this.componentWillUnmount.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   increment () {
@@ -45,6 +47,8 @@ class Timer extends Component {
         <Text style = {styles.foreach}>{Math.floor(distance/INTERVAL%60)} : </Text>
         <Text style = {styles.foreach}>{Math.floor((distance/10)%100)}</Text>
         </View>
+        <Button onPress = {this.componentWillUnmount} title = "stop"/>
+        <Button onPress = {this.componentDidMount} title = "start"/>
       </View>
     );
   }
